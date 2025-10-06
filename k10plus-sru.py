@@ -4,7 +4,7 @@ from lxml import etree
 import pandas as pd
 
 
-def vd17_sru(query):
+def k10plus_sru(query):
     """SRU-Query for K10plus catalogue."""
     base_url = "http://sru.k10plus.de/opac-de-627" # Select database of specific library from https://uri.gbv.de/database/opac
     parameters = {
@@ -83,7 +83,7 @@ if __name__ == "__main__":
     # Example
     query = "pica.tit=Kursachsen und das Ende"
 
-    records = vd17_sru(query)
+    records = k10plus_sru(query)
     parsed_records = [parse_record(record) for record in records]
     df = to_df(parsed_records)
 
