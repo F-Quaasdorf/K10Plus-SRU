@@ -15,10 +15,8 @@ def k10plus_sru(query):
         "query": query
     }
 
-    ns = {
-        "zs": "http://docs.oasis-open.org/ns/search-ws/sruResponse",
-        "marc": "http://www.loc.gov/MARC21/slim"
-    }
+    ns = {"zs": "http://docs.oasis-open.org/ns/search-ws/sruResponse",
+        "marc": "http://www.loc.gov/MARC21/slim"}
 
     session = requests.Session()
     records = []
@@ -67,7 +65,7 @@ def parse_record(record):
         "Titel": get_text("//marc:datafield[@tag='245']/marc:subfield[@code='a']"),
         "Erscheinungsort": get_text("//marc:datafield[@tag='264']/marc:subfield[@code='a']"),
         "Erscheinungsjahr": get_text("//marc:datafield[@tag='264']/marc:subfield[@code='c']"),
-        "Sprache": get_text("//marc:datafield[@tag='041']/marc:subfield[@code='a']"),
+        "Sprache": get_text("//marc:datafield[@tag='041']/marc:subfield[@code='a']"),        
         "Einrichtung": get_text("//marc:datafield[@tag='924']/marc:subfield[@code='b']")
     }
 
@@ -81,7 +79,7 @@ def to_df(records):
 
 if __name__ == "__main__":
     # Example
-    query = "pica.tit=Kursachsen und das Ende"
+    query = "pica.ppn=157142477"
 
     records = k10plus_sru(query)
     parsed_records = [parse_record(record) for record in records]
